@@ -9,13 +9,12 @@
 </head>
 <body style="margin:0; overflow:hidden;">
   <a-scene embedded arjs>
-    <!-- Hiroマーカー -->
-    <a-marker preset="hiro">
+    <!-- Hiroマーカー（回転をマーカーに適用） -->
+    <a-marker preset="hiro" rotation="0 90 0">  <!-- ここでマーカー自体を回転させて壁と平行に -->
 
       <!-- 画像（壁と平行に設置） -->
       <a-image id="markImg"
                position="0 0 0"
-               rotation="0 0 0"    <!-- 壁と平行に配置 -->
                width="1.2" height="0.8"
                src="./img1.jpg">
       </a-image>
