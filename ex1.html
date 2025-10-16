@@ -20,15 +20,15 @@
                src="./box01_icon10.png">
       </a-image>
 
-      <!-- タイトル -->
+      <!-- タイトル（画像の下に位置調整） -->
       <a-entity id="markTitle"
-                position="0 0.05 0.01" rotation="-90 0 0"
+                position="0 0 -0.3" rotation="-90 0 0"
                 text="value: 洗濯（30℃）; width: 3; align: center; color: #111;">
       </a-entity>
 
-      <!-- 説明 -->
+      <!-- 説明（さらに下に配置） -->
       <a-entity id="markDesc"
-                position="0 -0.2 0.01" rotation="-90 0 0"
+                position="0 -0.2 -0.3" rotation="-90 0 0"
                 text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 3; align: center; color: #333;">
       </a-entity>
 
@@ -41,17 +41,17 @@
     const marks = [
       {
         title: "洗濯（30℃）",
-        img: "./img1.jpg",
+        img: "./box01_icon10.png",
         desc: "液温は30℃を限度とし、洗濯機による洗濯ができる"
       },
       {
         title: "漂白",
-        img: "./img2.jpg",
+        img: "./box02_icon01.png",
         desc: "塩素系及び酸素系漂白剤による漂白処理ができる"
       },
       {
         title: "タンブル乾燥（高温）",
-        img: "./img3.jpg",
+        img: "./box03_icon01.png",
         desc: "洗濯処理後のタンブル乾燥処理ができる（高温80℃）"
       }
     ];
