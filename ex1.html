@@ -9,26 +9,26 @@
 </head>
 <body style="margin:0; overflow:hidden;">
   <a-scene embedded arjs>
-    <!-- Hiroマーカー（回転をマーカーに適用） -->
-    <a-marker preset="hiro" rotation="0 90 0">  <!-- ここでマーカー自体を回転させて壁と平行に -->
+    <!-- Hiroマーカー -->
+    <a-marker preset="hiro">
 
       <!-- 画像（壁と平行に設置） -->
       <a-image id="markImg"
                position="0 0 0"
-               rotation="0 0 0"    <!-- 画像は回転しない -->
+               rotation="-90 0 0"    <!-- 壁と平行に表示 -->
                width="1.2" height="0.8"
-               src="./img1.jpg">
+               src="./box01_icon10.png">
       </a-image>
 
-      <!-- タイトル（画像の下に位置調整） -->
+      <!-- タイトル -->
       <a-entity id="markTitle"
-                position="0 0.45 0.01" rotation="0 0 0"
+                position="0 0.05 0.01" rotation="-90 0 0"
                 text="value: 洗濯（30℃）; width: 3; align: center; color: #111;">
       </a-entity>
 
-      <!-- 説明（さらに下に配置） -->
+      <!-- 説明 -->
       <a-entity id="markDesc"
-                position="0 0.2 0.01" rotation="0 0 0"
+                position="0 -0.2 0.01" rotation="-90 0 0"
                 text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 3; align: center; color: #333;">
       </a-entity>
 
@@ -37,17 +37,22 @@
   </a-scene>
 
   <script>
-    // ====== 表示する2つのマーク（洗濯と漂白） ======
+    // ====== 表示する3つのマーク ======
     const marks = [
       {
         title: "洗濯（30℃）",
-        img: "./img1.jpg",   <!-- 新しい画像 -->
+        img: "./box01_icon10.png",
         desc: "液温は30℃を限度とし、洗濯機による洗濯ができる"
       },
       {
         title: "漂白",
-        img: "./img2.jpg",   <!-- 新しい画像 -->
+        img: "./box02_icon01.png",
         desc: "塩素系及び酸素系漂白剤による漂白処理ができる"
+      },
+      {
+        title: "タンブル乾燥（高温）",
+        img: "./box03_icon01.png",
+        desc: "洗濯処理後のタンブル乾燥処理ができる（高温80℃）"
       }
     ];
     // ===================================
