@@ -17,18 +17,18 @@
                position="0 0 0"
                rotation="-90 0 0"    <!-- 壁と平行に表示 -->
                width="1.2" height="0.8"
-               src="./box01_icon10.png">
+               src="./img1.jpg">  <!-- 新しい画像名に変更 -->
       </a-image>
 
-      <!-- タイトル -->
+      <!-- タイトル（画像の下にかなり下に配置） -->
       <a-entity id="markTitle"
-                position="0 0.05 0.01" rotation="-90 0 0"
+                position="0 -1.5 0.01" rotation="0 0 0"  <!-- 画像のかなり下に配置 -->
                 text="value: 洗濯（30℃）; width: 3; align: center; color: #111;">
       </a-entity>
 
-      <!-- 説明 -->
+      <!-- 説明（さらに下に配置） -->
       <a-entity id="markDesc"
-                position="0 -0.2 0.01" rotation="-90 0 0"
+                position="0 -2.2 0.01" rotation="0 0 0"  <!-- さらに下に配置 -->
                 text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 3; align: center; color: #333;">
       </a-entity>
 
@@ -41,17 +41,17 @@
     const marks = [
       {
         title: "洗濯（30℃）",
-        img: "./box01_icon10.png",
+        img: "./img1.jpg",   <!-- 新しい画像名 -->
         desc: "液温は30℃を限度とし、洗濯機による洗濯ができる"
       },
       {
         title: "漂白",
-        img: "./box02_icon01.png",
+        img: "./img2.jpg",   <!-- 新しい画像名 -->
         desc: "塩素系及び酸素系漂白剤による漂白処理ができる"
       },
       {
         title: "タンブル乾燥（高温）",
-        img: "./box03_icon01.png",
+        img: "./img3.jpg",   <!-- 新しい画像名 -->
         desc: "洗濯処理後のタンブル乾燥処理ができる（高温80℃）"
       }
     ];
