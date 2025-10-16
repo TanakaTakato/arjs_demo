@@ -2,78 +2,90 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Care Label Quick Guide</title>
+  <title>Care Label AR (3 Icons)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin:0; overflow:hidden;">
   <a-scene embedded arjs>
-    <!-- Hiroマーカーに反応 -->
     <a-marker preset="hiro">
 
-      <!-- 見やすい“ガイドパネル”（右側に設置） -->
+      <!-- 白い説明パネル（クリックで切替） -->
       <a-plane id="panel"
                position="0.55 0.25 0" rotation="0 -90 0"
-               width="1.05" height="0.62"
-               color="#ffffff"
-               material="side:double; roughness:0.9; metalness:0.0">
+               width="1.05" height="0.70"
+               color="#ffffff" material="side:double; roughness:0.9;">
       </a-plane>
 
       <!-- タイトル -->
-      <a-entity position="0.55 0.52 0.01" rotation="0 -90 0"
-                text="value: 衣類ケア表示 クイックガイド; width: 2.4; align: center; color: #111;">
+      <a-entity position="0.55 0.56 0.01" rotation="0 -90 0"
+                text="value: 衣類ケア表示（タップで切替）; width: 2.4; align: center; color: #111;">
       </a-entity>
 
-      <!-- 説明テキスト（カテゴリが切り替わる） -->
-      <a-entity id="desc"
-                position="0.55 0.285 0.01" rotation="0 -90 0"
-                text="value: 読み込み中...; width: 2.2; align: left; color: #111;">
+      <!-- 画像 -->
+      <a-image id="markImg"
+               position="0.55 0.37 0.011" rotation="0 -90 0"
+               width="0.35" height="0.35"
+               src="./box01_icon10.png">
+      </a-image>
+
+      <!-- 見出し -->
+      <a-entity id="markTitle"
+                position="0.55 0.17 0.011" rotation="0 -90 0"
+                text="value: 洗濯（30℃）; width: 2.0; align: center; color: #111;">
       </a-entity>
 
-      <!-- ちょい演出：ハンガー風オブジェクト（任意） -->
-      <a-cylinder position="0.08 0.55 0" radius="0.01" height="0.25" color="#888"></a-cylinder>
-      <a-box position="0.08 0.45 0" width="0.35" height="0.02" depth="0.02" color="#888"></a-box>
-      <a-box position="0.08 0.40 0" width="0.30" height="0.20" depth="0.05" color="#cfd8dc"></a-box>
+      <!-- 説明 -->
+      <a-entity id="markDesc"
+                position="0.55 0.05 0.011" rotation="0 -90 0"
+                text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 2.2; align: center; color: #333;">
+      </a-entity>
 
     </a-marker>
-
-    <!-- カメラ -->
     <a-entity camera></a-entity>
   </a-scene>
 
   <script>
-    // 外部データ・センサなし。5カテゴリを順送り表示
-    const pages = [
-      "【洗 濯】\n・桶マーク: 家庭洗濯OK\n・数字: 水温上限（例: 40）\n・手のマーク: 手洗いのみ\n・×: 家庭洗濯不可",
-      "【漂 白】\n・三角: 漂白剤OK\n・斜線三角: 酸素系のみOK\n・×三角: 漂白NG",
-      "【乾 燥】\n・四角中に丸: タンブル乾燥OK\n・点1/2: 低温/中温\n・×: タンブル乾燥不可\n・四角: つり干し/平干し等あり",
-      "【アイロン】\n・アイロン: アイロン可\n・点1/2/3: 低/中/高温\n・×: アイロン不可",
-      "【ド ラ イ】\n・丸: ドライクリーニング可\n・P/F等: 溶剤指定\n・×: ドライ不可"
+    // ====== あなたの3つのマーク ======
+    const marks = [
+      {
+        title: "洗濯（30℃）",
+        img: "./box01_icon10.png",
+        desc: "液温は30℃を限度とし、洗濯機による洗濯ができる"
+      },
+      {
+        title: "漂白",
+        img: "./box02_icon01.png",
+        desc: "塩素系及び酸素系漂白剤による漂白処理ができる"
+      },
+      {
+        title: "タンブル乾燥（高温）",
+        img: "./box03_icon01.png",
+        desc: "洗濯処理後のタンブル乾燥処理ができる（高温80℃）"
+      }
     ];
+    // ===================================
 
-    const panelEl = document.getElementById('panel');
-    const textEl  = document.getElementById('desc');
+    const panel = document.getElementById('panel');
+    const imgEl = document.getElementById('markImg');
+    const titleEl = document.getElementById('markTitle');
+    const descEl = document.getElementById('markDesc');
+
     let idx = 0;
-
     function render() {
-      textEl.setAttribute('text', 'value', pages[idx]);
+      const m = marks[idx];
+      imgEl.setAttribute('src', m.img);
+      titleEl.setAttribute('text', 'value', m.title);
+      descEl.setAttribute('text', 'value', m.desc);
     }
     render();
 
-    // パネルをタップ/クリックするとカテゴリ切替
-    panelEl.addEventListener('click', () => {
-      idx = (idx + 1) % pages.length;
+    // パネルをクリックで次のマークへ
+    panel.addEventListener('click', () => {
+      idx = (idx + 1) % marks.length;
       render();
     });
-
-    // タップを促す一言（数秒後に一度だけ差し替え）
-    setTimeout(() => {
-      if (idx === 0) {
-        textEl.setAttribute('text', 'value',
-          pages[0] + "\n\n※パネルをタップで『漂白→乾燥→アイロン→ドライ』に切替");
-      }
-    }, 2000);
   </script>
 </body>
 </html>
