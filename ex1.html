@@ -2,44 +2,34 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Care Label AR (3 Icons)</title>
+  <title>Care Label AR (Wall Type)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin:0; overflow:hidden;">
   <a-scene embedded arjs>
+    <!-- Hiroマーカー -->
     <a-marker preset="hiro">
 
-      <!-- 白い説明パネル（クリックで切替） -->
-      <a-plane id="panel"
-               position="0.55 0.25 0" rotation="0 -90 0"
-               width="1.05" height="0.70"
-               color="#ffffff" material="side:double; roughness:0.9;">
-      </a-plane>
-
-      <!-- タイトル -->
-      <a-entity position="0.55 0.56 0.01" rotation="0 -90 0"
-                text="value: 衣類ケア表示（タップで切替）; width: 2.4; align: center; color: #111;">
-      </a-entity>
-
-      <!-- 画像 -->
+      <!-- 画像（壁と平行に設置） -->
       <a-image id="markImg"
-               position="0.55 0.37 0.011" rotation="0 -90 0"
-               width="0.35" height="0.35"
+               position="0 0 0"
+               rotation="-90 0 0"    <!-- 壁と平行に表示 -->
+               width="1.2" height="0.8"
                src="./box01_icon10.png">
       </a-image>
 
-      <!-- 見出し -->
+      <!-- タイトル -->
       <a-entity id="markTitle"
-                position="0.55 0.17 0.011" rotation="0 -90 0"
-                text="value: 洗濯（30℃）; width: 2.0; align: center; color: #111;">
+                position="0 0.05 0.01" rotation="-90 0 0"
+                text="value: 洗濯（30℃）; width: 3; align: center; color: #111;">
       </a-entity>
 
       <!-- 説明 -->
       <a-entity id="markDesc"
-                position="0.55 0.05 0.011" rotation="0 -90 0"
-                text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 2.2; align: center; color: #333;">
+                position="0 -0.2 0.01" rotation="-90 0 0"
+                text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 3; align: center; color: #333;">
       </a-entity>
 
     </a-marker>
@@ -47,7 +37,7 @@
   </a-scene>
 
   <script>
-    // ====== あなたの3つのマーク ======
+    // ====== 表示する3つのマーク ======
     const marks = [
       {
         title: "洗濯（30℃）",
@@ -67,7 +57,6 @@
     ];
     // ===================================
 
-    const panel = document.getElementById('panel');
     const imgEl = document.getElementById('markImg');
     const titleEl = document.getElementById('markTitle');
     const descEl = document.getElementById('markDesc');
@@ -81,11 +70,11 @@
     }
     render();
 
-    // パネルをクリックで次のマークへ
-    panel.addEventListener('click', () => {
+    // ====== 自動で5秒ごとに切り替え ======
+    setInterval(() => {
       idx = (idx + 1) % marks.length;
       render();
-    });
+    }, 5000);
   </script>
 </body>
 </html>
