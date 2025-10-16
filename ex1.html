@@ -17,14 +17,15 @@
                position="0 0 0"
                rotation="-90 0 0"    <!-- 壁と平行に表示 -->
                width="1.2" height="0.8"
-               src="./img1.jpg">  <!-- 新しい画像名 -->
+               src="./img1.jpg">  <!-- 洗濯マーク画像 -->
       </a-image>
 
-      <!-- 説明テキスト（画像の下にかなり下に配置） -->
-      <a-entity id="markDesc"
-                position="0 -1.5 0.01" rotation="0 0 0"  <!-- 画像の下に配置 -->
-                text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 3; align: center; color: #333;">
-      </a-entity>
+      <!-- 説明文画像（画像の下に配置） -->
+      <a-image id="descImg"
+               position="0 -1.5 0.01" rotation="0 0 0"  <!-- 画像の下に配置 -->
+               width="1.2" height="0.8"
+               src="./desc1.png">  <!-- 説明文が入った画像 -->
+      </a-image>
 
     </a-marker>
     <a-entity camera></a-entity>
@@ -34,28 +35,28 @@
     // ====== 表示する3つのマーク（洗濯、漂白、乾燥） ======
     const marks = [
       {
-        img: "./img1.jpg",   <!-- 画像1 -->
-        desc: "液温は30℃を限度とし、洗濯機による洗濯ができる"
+        img: "./img1.jpg",   <!-- 画像1（洗濯マーク） -->
+        descImg: "./desc1.png"  <!-- 説明文が入った画像1 -->
       },
       {
-        img: "./img2.jpg",   <!-- 画像2 -->
-        desc: "塩素系及び酸素系漂白剤による漂白処理ができる"
+        img: "./img2.jpg",   <!-- 画像2（漂白マーク） -->
+        descImg: "./desc2.png"  <!-- 説明文が入った画像2 -->
       },
       {
-        img: "./img3.jpg",   <!-- 画像3 -->
-        desc: "洗濯処理後のタンブル乾燥処理ができる（高温80℃）"
+        img: "./img3.jpg",   <!-- 画像3（タンブル乾燥マーク） -->
+        descImg: "./desc3.png"  <!-- 説明文が入った画像3 -->
       }
     ];
     // ===================================
 
     const imgEl = document.getElementById('markImg');
-    const descEl = document.getElementById('markDesc');
+    const descImgEl = document.getElementById('descImg');
 
     let idx = 0;
     function render() {
       const m = marks[idx];
       imgEl.setAttribute('src', m.img);
-      descEl.setAttribute('text', 'value', m.desc);
+      descImgEl.setAttribute('src', m.descImg);
     }
     render();
 
