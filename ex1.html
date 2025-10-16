@@ -9,8 +9,8 @@
 </head>
 <body style="margin:0; overflow:hidden;">
   <a-scene embedded arjs>
-    <!-- Hiroマーカー（回転をマーカーに適用） -->
-    <a-marker preset="hiro" rotation="0 90 0">  <!-- ここでマーカー自体を回転させて壁と平行に -->
+    <!-- Hiroマーカー -->
+    <a-marker preset="hiro" rotation="0 90 0">  <!-- マーカー回転 -->
 
       <!-- 画像（壁と平行に設置） -->
       <a-image id="markImg"
@@ -37,18 +37,17 @@
   </a-scene>
 
   <script>
-    // ====== 表示する3つのマーク ======
+    // ====== 表示する2つのマーク（洗濯と漂白） ======
     const marks = [
-      
+      {
+        title: "洗濯（30℃）",
+        img: "./img1.jpg",   <!-- 新しい画像 -->
+        desc: "液温は30℃を限度とし、洗濯機による洗濯ができる"
+      },
       {
         title: "漂白",
         img: "./img2.jpg",   <!-- 新しい画像 -->
         desc: "塩素系及び酸素系漂白剤による漂白処理ができる"
-      },
-      {
-        title: "タンブル乾燥（高温）",
-        img: "./img3.jpg",   <!-- 新しい画像 -->
-        desc: "洗濯処理後のタンブル乾燥処理ができる（高温80℃）"
       }
     ];
     // ===================================
@@ -74,4 +73,3 @@
   </script>
 </body>
 </html>
-
