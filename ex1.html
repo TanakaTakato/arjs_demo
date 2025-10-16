@@ -15,20 +15,20 @@
       <!-- 画像（壁と平行に設置） -->
       <a-image id="markImg"
                position="0 0 0"
-               rotation="-90 0 0"
+               rotation="0 0 0"    <!-- 壁と平行に配置 -->
                width="1.2" height="0.8"
                src="./box01_icon10.png">
       </a-image>
 
       <!-- タイトル（画像の下に位置調整） -->
       <a-entity id="markTitle"
-                position="0 0 -0.3" rotation="-90 0 0"
+                position="0 0.55 0.01" rotation="0 0 0"
                 text="value: 洗濯（30℃）; width: 3; align: center; color: #111;">
       </a-entity>
 
       <!-- 説明（さらに下に配置） -->
       <a-entity id="markDesc"
-                position="0 -0.2 -0.3" rotation="-90 0 0"
+                position="0 0.3 0.01" rotation="0 0 0"
                 text="value: 液温は30℃を限度とし、洗濯機による洗濯ができる; width: 3; align: center; color: #333;">
       </a-entity>
 
